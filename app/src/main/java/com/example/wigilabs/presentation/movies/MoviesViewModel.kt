@@ -21,7 +21,9 @@ class MoviesViewModel @Inject constructor(
 
     private val _movieLiveData = MutableLiveData<MoviesResult.ListMoviesResult>()
     val movieLiveData: LiveData<MoviesResult.ListMoviesResult> get() = _movieLiveData
-    val _movieLiveData2 = MutableLiveData<MoviesResult.ListMoviesResult>()
+
+    private val _movieLiveDataCache = MutableLiveData<MoviesResult.ListMoviesResult>()
+    val movieLiveDataCache: LiveData<MoviesResult.ListMoviesResult> get() = _movieLiveDataCache
 
     fun allMoviesExecute(api_key : String, lenguage : String) {
         viewModelScope.launch {
@@ -51,12 +53,12 @@ class MoviesViewModel @Inject constructor(
     }
 
     fun allMoviesCache() {
-        _movieLiveData.value = MoviesResult.ListMoviesResult.Loading
+        _movieLiveDataCache.value = MoviesResult.ListMoviesResult.Loading
         val result = getAllMoviesUseCase.allMoviesDAO()
             if (result.isNotEmpty()) {
-                _movieLiveData.value = MoviesResult.ListMoviesResult.Success(result.map { it.toModel() })
+                _movieLiveDataCache.value = MoviesResult.ListMoviesResult.Success(result.map { it.toModel() })
             }else{
-                _movieLiveData.value = MoviesResult.ListMoviesResult.Error(Failure.UnExpected)
+                _movieLiveDataCache.value = MoviesResult.ListMoviesResult.Error(Failure.UnExpected)
             }
         }
     }

@@ -57,7 +57,7 @@ class MoviesFragment : Fragment(), OnMoviesAdapterListener {
     }
 
     private fun observerGetMoviesCache(){
-        moviesViewModel._movieLiveData2.observe(viewLifecycleOwner,{
+        moviesViewModel.movieLiveDataCache.observe(viewLifecycleOwner,{
             when (it){
                 is MoviesResult.ListMoviesResult.Loading -> {
                     Toast.makeText(requireContext(),"Sin Conexion..",Toast.LENGTH_SHORT).show()

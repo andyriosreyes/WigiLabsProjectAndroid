@@ -9,7 +9,7 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:padding="@dimen/dimen_20dp"
+    android:layout_margin="@dimen/dimen_20dp"
     android:layout_height="match_parent">
 
     <ImageView
@@ -76,12 +76,11 @@
 
         <TextView
             android:id="@+id/tvMovieDescription"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginStart="5dp"
-            android:maxLines="5"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:autoSizeTextType="uniform"
             app:layout_constraintLeft_toRightOf="@+id/tvMovieDescriptionLabel"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
