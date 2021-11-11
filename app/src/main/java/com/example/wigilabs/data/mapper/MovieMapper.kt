@@ -1,6 +1,8 @@
 package com.example.wigilabs.data.mapper
 
+import com.example.wigilabs.data.model.MainMovieEntity
 import com.example.wigilabs.data.model.MovieEntity
+import com.example.wigilabs.domain.response.MainMovieResponse
 import com.example.wigilabs.domain.response.MovieResponse
 
 object MovieMapper {
@@ -14,5 +16,10 @@ object MovieMapper {
         overview = overview,
         backdrop_path = backdrop_path,
         popularity = popularity
+    )
+
+    fun MainMovieEntity.toDomain() = MainMovieResponse(
+        total_pages = total_pages,
+        results = results.map { it.toDomain() }
     )
 }

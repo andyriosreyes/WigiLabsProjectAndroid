@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.wigilabs.domain.response.MovieResponse
 import com.example.wigilabs.domain.usecase.GetAllMoviesUseCase
 import com.example.wigilabs.presentation.mapper.MovieModelMapper.toModel
 import com.example.wigilabs.util.Failure
@@ -33,13 +34,13 @@ class MoviesViewModel @Inject constructor(
             }
             when (result) {
                 is ResultType.Success -> {
-                    val movies = result.value.map { it.toModel() }
+                    val movies : List<MovieResponse> = result.value?.results?: emptyList()
                     getAllMoviesUseCase.deleteMoviesDAO()
 
                     if(getAllMoviesUseCase.allMoviesDAO().isEmpty()){
-                        getAllMoviesUseCase.addMoviesDAO(result.value)
+                        getAllMoviesUseCase.addMoviesDAO(movies)
                     }
-                    _movieLiveData.value = MoviesResult.ListMoviesResult.Success(movies)
+                    _movieLiveData.value = MoviesResult.ListMoviesResult.Success(movies.map { it.toModel() })
                 }
                 is ResultType.Error -> {
                     when (result.value){
