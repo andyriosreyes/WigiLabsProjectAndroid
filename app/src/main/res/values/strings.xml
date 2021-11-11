@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">WigiLabs</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_movie_title">Title : </string>
+    <string name="label_movie_description">Description : </string>
+    <string name="label_movie_votation">Votation : </string>
+    <string name="label_movie_date">Date : </string>
+    <string name="label_movie_popularity">Popularity : </string>
 </resources>
